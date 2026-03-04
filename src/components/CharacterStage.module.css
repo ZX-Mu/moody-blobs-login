@@ -1,0 +1,33 @@
+.stage {
+  position: relative;
+  width: 420px;
+  height: 280px;
+}
+
+.orange {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.purple {
+  position: absolute;
+  bottom: 0;
+  left: 80px;
+  z-index: 1;
+}
+
+.black {
+  position: absolute;
+  bottom: 0;
+  left: 200px;
+  z-index: 3;
+}
+
+.yellow {
+  position: absolute;
+  bottom: 0;
+  left: 270px;
+  z-index: 2;
+}

@@ -1,0 +1,9 @@
+.container {
+  display: block;
+}
+
+.svg {
+  display: block;
+  width: 120px;
+  height: 180px;
+}
