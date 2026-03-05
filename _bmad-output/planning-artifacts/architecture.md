@@ -211,6 +211,15 @@ src/
 - 瞳孔移动：`motion.circle` 或 `motion.ellipse`，`x`/`y` 属性
 - 嘴型变形：`motion.path`，`d` 属性插值
 
+**角色舞台定海神针原则 (重要视觉约束)：**
+- **统一基准线 (Baseline)**：各角色 SVG 的 viewBox 底部透明留白不同，为了让它们“双脚”踩在同一物理水平线上，必须使用精确的负 `bottom` 定位：
+  - `OrangeBlob`: `0px`
+  - `YellowCylinder`: `-8px`
+  - `PurpleRect`: `-18px`
+  - `BlackBar`: `-25px`
+- **阶梯式体态 (Staircase Scale)**：为了形成错落有致、互不遮挡眼睛的群像构图，角色的 CSS `transform: scale` 被精调为：紫(`1.1`) > 黄(`1.0`) > 橙(`0.9`) > 黑(`0.85`)。后续引入动画时必须保留此相对基准比例。
+- **锚点锁定**：所有角色的 `transform-origin` 必需死锁为 `bottom center`，这是防止角色在未来触发弯腰、弹性伸缩动画时“双脚离地”的物理基础。
+
 ### Enforcement Guidelines
 
 **All AI Agents MUST:**

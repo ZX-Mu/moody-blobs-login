@@ -43,12 +43,12 @@ development_status:
   epic-1: in-progress
   1-1-project-initialization: done
   1-2-character-svg-static-components: done
-  1-3-page-layout: review
+  1-3-page-layout: done
   epic-1-retrospective: optional
 
-  epic-2: backlog
-  2-1-mouse-context-and-tracker: backlog
-  2-2-character-pupil-mouse-tracking: backlog
+  epic-2: in-progress
+  2-1-mouse-context-and-tracker: done
+  2-2-character-pupil-mouse-tracking: done
   epic-2-retrospective: optional
 
   epic-3: backlog

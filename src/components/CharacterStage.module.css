@@ -1,33 +1,55 @@
 .stage {
   position: relative;
-  width: 420px;
-  height: 280px;
+  width: 380px;
+  height: 240px;
+  /* Center stage if container allows */
+  margin: 0 auto;
+  /* Soft general drop shadow to unify the group */
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.06));
 }
 
-.orange {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 4;
-}
+/* 
+  Perfect baseline alignment with gentle, straight overlap.
+  Tallest in back, shortest in front.
+*/
 
 .purple {
   position: absolute;
-  bottom: 0;
-  left: 80px;
-  z-index: 1;
-}
-
-.black {
-  position: absolute;
-  bottom: 0;
-  left: 200px;
-  z-index: 3;
+  /* Exact math baseline padding: 18px */
+  bottom: -18px; 
+  left: 60px;
+  /* Scale up purple to be more prominent and less blocked */
+  transform: scale(1.1);
+  transform-origin: bottom center;
+  z-index: 1; /* Back left */
 }
 
 .yellow {
   position: absolute;
-  bottom: 0;
-  left: 270px;
-  z-index: 2;
+  /* Exact math baseline padding: ~8px */
+  bottom: -8px; 
+  left: 212px; /* Shifted left to close gap with black */
+  z-index: 2; /* Back right */
+}
+
+.black {
+  position: absolute;
+  /* Exact math baseline padding: 25px */
+  bottom: -25px; 
+  /* Move right to close the gap with Yellow */
+  left: 157px;
+  /* Scale up to 0.85 so it bridges the height gap appropriately with smaller eyes */
+  transform: scale(0.85);
+  transform-origin: bottom center;
+  z-index: 3; /* Middle center-right */
+}
+
+.orange {
+  position: absolute;
+  /* Exact math baseline padding: 0px */
+  bottom: 0px; 
+  left: 20px;
+  transform: scale(0.9);
+  transform-origin: bottom center;
+  z-index: 4; /* Front center-left */
 }

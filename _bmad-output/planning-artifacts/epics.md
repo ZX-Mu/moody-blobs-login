@@ -219,6 +219,8 @@ So that the page feels polished and ready for interaction.
 **When** rendered
 **Then** no horizontal scrollbar appears and the layout fills the viewport
 
+***Implementation Note:*** *The layout utilizes absolute positioning with mathematically calculated negative `bottom` margins to counteract SVG internal padding, enforcing a strict zero-line baseline. Characters are grouped in a staggered overlap (Purple > Yellow > Black > Orange) and meticulously scaled (1.1 to 0.85) to prevent any facial occlusion.*
+
 ---
 
 ## Epic 2: 鼠标视线追踪系统
