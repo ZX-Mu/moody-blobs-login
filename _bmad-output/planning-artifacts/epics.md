@@ -319,9 +319,9 @@ So that the page feels alive and emotionally responsive to my input.
 **Given** the emotion state changes to `'typing'`
 **When** characters re-render
 **Then** OrangeBlob mouth path transitions to a downward curve (worried expression), body rotation increases (most exaggerated, FR13)
-**And** PurpleRect mouth transitions to `M10,20 Q15,25 20,20` (down curve), body leans forward slightly (FR14)
+**And** PurpleRect mouth transitions to `M40,125 Q55,115 70,125` (down curve), body morphs to show a bent posture (FR14)
 **And** BlackBar pupil scales to ×1.2, minimal mouth change (FR16 — most restrained)
-**And** YellowCylinder mouth straightens, eyes lock forward (FR15 — moderate)
+**And** YellowCylinder mouth drops to an "O" shape, eyes do not lock forward, but pupil scales to ×0.85 (nervous) (FR15 — moderate)
 
 **Given** any character is animating to typing state
 **When** the transition occurs

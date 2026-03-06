@@ -50,3 +50,30 @@ export const pupilTransition = {
   stiffness: animationConfig.pupilTracking.stiffness,
   damping: animationConfig.pupilTracking.damping,
 };
+
+/**
+ * Transition rules for emotion-based SVG path morphing.
+ */
+export const emotionTransition = {
+  duration: 0.25,
+  ease: 'easeInOut' as const,
+};
+
+/**
+ * Spring config for character body rotations during emotion changes.
+ */
+export const bodyRotationSpring = {
+  type: 'spring' as const,
+  stiffness: 150,
+  damping: 15,
+};
+
+/**
+ * Per-character animation properties for specific emotion states.
+ */
+export const typingStateValues = {
+  orangeBlob: { rotation: -13 },
+  purpleRect: { skewX: 0 },     // Now uses path morphing directly to bend gracefully
+  blackBar: { pupilScale: 1.2 },
+  yellowCylinder: { lockEyes: false, pupilScale: 0.85 }, // Eyes no longer lock, pupil shrinks nervously
+};

@@ -6,7 +6,14 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig, pupilTransition } from '@/config/animation';
+import { useEmotionState } from '@/context/EmotionContext';
+import { 
+  animationConfig, 
+  pupilTransition,
+  emotionTransition,
+  typingStateValues
+} from '@/config/animation';
+import { characterPaths } from '@/config/characters';
 
 const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.yellowCylinder;
@@ -14,6 +21,8 @@ const MAX_OFFSET = pupilMaxOffset.yellowCylinder;
 
 const YellowCylinder = () => {
   const { x, y } = useMousePosition();
+  const emotion = useEmotionState();
+  const isTyping = emotion === 'typing';
 
   // Apply weight then clamp to MAX_OFFSET.
   // YellowCylinder weight 1.0×: max raw = 1.0 × 9 = 9px exactly equals the boundary — clamp is a safety guard, never active in practice.
@@ -30,7 +39,11 @@ const YellowCylinder = () => {
       <motion.circle
         r={9}
         fill="#1a1a1a"
-        animate={{ cx: 32 + offsetX, cy: 55 + offsetY }}
+        animate={{ 
+          cx: 32 + offsetX, 
+          cy: 55 + offsetY,
+          scale: isTyping ? typingStateValues.yellowCylinder.pupilScale : 1
+        }}
         transition={pupilTransition}
       />
       {/* Right eye */}
@@ -39,10 +52,19 @@ const YellowCylinder = () => {
       <motion.circle
         r={9}
         fill="#1a1a1a"
-        animate={{ cx: 74 + offsetX, cy: 55 + offsetY }}
+        animate={{ 
+          cx: 74 + offsetX, 
+          cy: 55 + offsetY,
+          scale: isTyping ? typingStateValues.yellowCylinder.pupilScale : 1
+        }}
         transition={pupilTransition}
       />
-      <circle cx="55" cy="95" r="5" fill="#1a1a1a" />
+      <motion.path
+        d={isTyping ? characterPaths.yellowCylinder.typing : characterPaths.yellowCylinder.idle}
+        fill="#1a1a1a"
+        stroke="none"
+        transition={emotionTransition}
+      />
     </svg>
   );
 };

@@ -6,7 +6,12 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig, pupilTransition } from '@/config/animation';
+import { useEmotionState } from '@/context/EmotionContext';
+import { 
+  animationConfig, 
+  pupilTransition,
+  typingStateValues
+} from '@/config/animation';
 
 const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.blackBar;
@@ -14,6 +19,8 @@ const MAX_OFFSET = pupilMaxOffset.blackBar;
 
 const BlackBar = () => {
   const { x, y } = useMousePosition();
+  const emotion = useEmotionState();
+  const isTyping = emotion === 'typing';
 
   // Apply weight then clamp to MAX_OFFSET.
   // BlackBar weight 0.9×: max raw = 0.9 × 6 = 5.4px; clamp boundary (6px) is never reached — defensive guard only.
@@ -29,7 +36,11 @@ const BlackBar = () => {
       <motion.circle
         r={6}
         fill="#1a1a1a"
-        animate={{ cx: 24 + offsetX, cy: 65 + offsetY }}
+        animate={{ 
+          cx: 24 + offsetX, 
+          cy: 65 + offsetY,
+          scale: isTyping ? typingStateValues.blackBar.pupilScale : 1
+        }}
         transition={pupilTransition}
       />
       {/* Right eye */}
@@ -38,7 +49,11 @@ const BlackBar = () => {
       <motion.circle
         r={6}
         fill="#1a1a1a"
-        animate={{ cx: 56 + offsetX, cy: 65 + offsetY }}
+        animate={{ 
+          cx: 56 + offsetX, 
+          cy: 65 + offsetY,
+          scale: isTyping ? typingStateValues.blackBar.pupilScale : 1
+        }}
         transition={pupilTransition}
       />
       <line x1="32" y1="108" x2="48" y2="108" stroke="white" strokeWidth="4" strokeLinecap="round" />
