@@ -34,6 +34,7 @@ const BlackBar = () => {
       <circle cx="24" cy="62" r="12" fill="white" />
       {/* cy=65: eye-white center (62) + 3px intentional downward resting gaze */}
       <motion.circle
+        initial={false}
         r={6}
         fill="#1a1a1a"
         animate={{ 
@@ -47,6 +48,7 @@ const BlackBar = () => {
       <circle cx="56" cy="62" r="12" fill="white" />
       {/* cy=65: eye-white center (62) + 3px resting gaze */}
       <motion.circle
+        initial={false}
         r={6}
         fill="#1a1a1a"
         animate={{ 

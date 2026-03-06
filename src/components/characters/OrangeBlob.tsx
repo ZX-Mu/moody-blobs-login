@@ -33,6 +33,7 @@ const OrangeBlob = () => {
   return (
     <svg width="150" height="90" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ display: 'block' }}>
       <motion.g
+        initial={false}
         animate={{ rotate: emotion === 'typing' ? typingStateValues.orangeBlob.rotation : 0 }}
         transition={bodyRotationSpring}
         style={{ transformOrigin: '60px 80px' }}
@@ -42,6 +43,7 @@ const OrangeBlob = () => {
         <circle cx="36" cy="30" r="14" fill="white" />
         {/* cy=32: eye-white center (30) + 2px intentional downward resting gaze */}
         <motion.circle
+          initial={false}
           r={7}
           fill="#1a1a1a"
           animate={{ cx: 36 + offsetX, cy: 32 + offsetY }}
@@ -51,12 +53,14 @@ const OrangeBlob = () => {
         <circle cx="74" cy="30" r="14" fill="white" />
         {/* cy=32: eye-white center (30) + 2px resting gaze */}
         <motion.circle
+          initial={false}
           r={7}
           fill="#1a1a1a"
           animate={{ cx: 74 + offsetX, cy: 32 + offsetY }}
           transition={pupilTransition}
         />
         <motion.path 
+          initial={false}
           d={emotion === 'typing' ? characterPaths.orangeBlob.typing : characterPaths.orangeBlob.idle}
           stroke="#1a1a1a" 
           strokeWidth="3" 

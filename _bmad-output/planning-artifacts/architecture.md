@@ -210,6 +210,7 @@ src/
 - 身体旋转：`motion.g` 包裹整个角色，`rotate` 属性
 - 瞳孔移动：`motion.circle` 或 `motion.ellipse`，`x`/`y` 属性
 - 嘴型变形：`motion.path`，`d` 属性插值
+- **初始状态避免入场动画**：所有带有 `animate` 属性的 `motion.*` SVG 元素，必须显式加上 `initial={false}`，以防止页面初始加载或组件挂载时出现不需要的从原点/默认状态过渡的入场动画。
 
 **角色舞台定海神针原则 (重要视觉约束)：**
 - **统一基准线 (Baseline)**：各角色 SVG 的 viewBox 底部透明留白不同，为了让它们“双脚”踩在同一物理水平线上，必须使用精确的负 `bottom` 定位：

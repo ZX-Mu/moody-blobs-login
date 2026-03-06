@@ -37,6 +37,7 @@ const YellowCylinder = () => {
       <circle cx="32" cy="52" r="18" fill="white" />
       {/* cy=55: eye-white center (52) + 3px intentional downward resting gaze */}
       <motion.circle
+        initial={false}
         r={9}
         fill="#1a1a1a"
         animate={{ 
@@ -50,6 +51,7 @@ const YellowCylinder = () => {
       <circle cx="74" cy="52" r="18" fill="white" />
       {/* cy=55: eye-white center (52) + 3px resting gaze */}
       <motion.circle
+        initial={false}
         r={9}
         fill="#1a1a1a"
         animate={{ 
@@ -60,6 +62,7 @@ const YellowCylinder = () => {
         transition={pupilTransition}
       />
       <motion.path
+        initial={false}
         d={isTyping ? characterPaths.yellowCylinder.typing : characterPaths.yellowCylinder.idle}
         fill="#1a1a1a"
         stroke="none"

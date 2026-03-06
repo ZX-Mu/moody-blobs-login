@@ -48,15 +48,17 @@ const PurpleRect = () => {
   return (
     <svg width="130" height="260" viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ display: 'block', overflow: 'visible' }}>
       <motion.path
+        initial={false}
         animate={{ d: isTyping ? bodyPaths.typing : bodyPaths.idle }}
         transition={emotionTransition}
         fill="#7B5EA7"
       />
-      <motion.g animate={{ x: eyeShift }} transition={emotionTransition}>
+      <motion.g initial={false} animate={{ x: eyeShift }} transition={emotionTransition}>
         {/* Left eye */}
         <circle cx="34" cy="70" r="18" fill="white" />
         {/* cy=73: eye-white center (70) + 3px intentional downward resting gaze */}
         <motion.circle
+          initial={false}
           r={9}
           fill="#1a1a1a"
           animate={{ cx: 34 + offsetX, cy: 73 + offsetY }}
@@ -66,6 +68,7 @@ const PurpleRect = () => {
         <circle cx="76" cy="70" r="18" fill="white" />
         {/* cy=73: eye-white center (70) + 3px resting gaze */}
         <motion.circle
+          initial={false}
           r={9}
           fill="#1a1a1a"
           animate={{ cx: 76 + offsetX, cy: 73 + offsetY }}
@@ -73,6 +76,7 @@ const PurpleRect = () => {
         />
         </motion.g>
         <motion.path 
+          initial={false}
           animate={{ 
             d: isTyping ? characterPaths.purpleRect.typing : characterPaths.purpleRect.idle,
             x: mouthShift 
