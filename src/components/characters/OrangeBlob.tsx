@@ -6,16 +6,11 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig } from '@/config/animation';
+import { animationConfig, pupilTransition } from '@/config/animation';
 
-const { pupilTracking, characterWeights, pupilMaxOffset } = animationConfig;
+const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.orangeBlob;
 const MAX_OFFSET = pupilMaxOffset.orangeBlob;
-const TRANSITION = {
-  type: 'spring' as const,
-  stiffness: pupilTracking.stiffness,
-  damping: pupilTracking.damping,
-};
 
 const OrangeBlob = () => {
   const { x, y } = useMousePosition();
@@ -31,21 +26,21 @@ const OrangeBlob = () => {
       <ellipse cx="60" cy="80" rx="58" ry="62" fill="#FF8C42" />
       {/* Left eye */}
       <circle cx="36" cy="30" r="14" fill="white" />
-      {/* cy=32: eye-white center (30) + 3px intentional downward resting gaze */}
+      {/* cy=32: eye-white center (30) + 2px intentional downward resting gaze */}
       <motion.circle
         r={7}
         fill="#1a1a1a"
         animate={{ cx: 36 + offsetX, cy: 32 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       {/* Right eye */}
       <circle cx="74" cy="30" r="14" fill="white" />
-      {/* cy=32: eye-white center (30) + 3px resting gaze */}
+      {/* cy=32: eye-white center (30) + 2px resting gaze */}
       <motion.circle
         r={7}
         fill="#1a1a1a"
         animate={{ cx: 74 + offsetX, cy: 32 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       <path d="M48,56 Q60,60 72,56" stroke="#1a1a1a" strokeWidth="3" fill="none" strokeLinecap="round" />
     </svg>

@@ -40,3 +40,13 @@ export const animationConfig = {
     purpleRect: 9,
   },
 };
+
+/**
+ * Pre-built Framer Motion spring transition for pupil tracking.
+ * Shared across all 4 character components — change here, applies everywhere.
+ */
+export const pupilTransition = {
+  type: 'spring' as const,
+  stiffness: animationConfig.pupilTracking.stiffness,
+  damping: animationConfig.pupilTracking.damping,
+};

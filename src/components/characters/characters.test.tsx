@@ -117,3 +117,47 @@ describe('YellowCylinder', () => {
     expect(pupils).toHaveLength(2);
   });
 });
+
+// ─── Pupil offset calculation tests (L1 fix) ───────────────────────────────
+// These tests verify that weight multipliers and clamp logic work correctly.
+// Without these, a misconfigured animationConfig would pass all structural tests.
+
+import { animationConfig } from '@/config/animation';
+
+describe('Pupil offset calculation (animationConfig contract)', () => {
+  const { characterWeights, pupilMaxOffset } = animationConfig;
+
+  it('OrangeBlob: weight=1.2 → raw offset exceeds MAX_OFFSET and gets clamped', () => {
+    const MAX = pupilMaxOffset.orangeBlob; // 7
+    const WEIGHT = characterWeights.orangeBlob; // 1.2
+    // At x=1.0 (far right), raw = 1.0 * MAX * WEIGHT = 8.4px → exceeds 7px
+    const raw = 1.0 * MAX * WEIGHT;
+    const clamped = Math.max(-MAX, Math.min(MAX, raw));
+    expect(raw).toBeGreaterThan(MAX); // clamp actively fires for OrangeBlob
+    expect(clamped).toBe(MAX);        // clamped to exactly 7px
+  });
+
+  it('PurpleRect: weight=0.8 → raw offset stays within MAX_OFFSET (clamp defensive only)', () => {
+    const MAX = pupilMaxOffset.purpleRect; // 9
+    const WEIGHT = characterWeights.purpleRect; // 0.8
+    const raw = 1.0 * MAX * WEIGHT; // 7.2px
+    const clamped = Math.max(-MAX, Math.min(MAX, raw));
+    expect(raw).toBeLessThan(MAX);    // clamp never fires for PurpleRect
+    expect(clamped).toBeCloseTo(raw); // offset passes through unchanged
+  });
+
+  it('BlackBar: weight=0.9, MAX_OFFSET=6 → max travel is 5.4px', () => {
+    const MAX = pupilMaxOffset.blackBar; // 6
+    const WEIGHT = characterWeights.blackBar; // 0.9
+    const maxTravel = MAX * WEIGHT; // 5.4
+    expect(maxTravel).toBeCloseTo(5.4);
+    expect(maxTravel).toBeLessThan(MAX);
+  });
+
+  it('YellowCylinder: weight=1.0 → raw offset equals MAX_OFFSET exactly at x=1.0', () => {
+    const MAX = pupilMaxOffset.yellowCylinder; // 9
+    const WEIGHT = characterWeights.yellowCylinder; // 1.0
+    const raw = 1.0 * MAX * WEIGHT; // 9.0
+    expect(raw).toBe(MAX); // equals boundary exactly, clamp is a no-op
+  });
+});

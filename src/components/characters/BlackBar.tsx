@@ -6,16 +6,11 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig } from '@/config/animation';
+import { animationConfig, pupilTransition } from '@/config/animation';
 
-const { pupilTracking, characterWeights, pupilMaxOffset } = animationConfig;
+const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.blackBar;
 const MAX_OFFSET = pupilMaxOffset.blackBar;
-const TRANSITION = {
-  type: 'spring' as const,
-  stiffness: pupilTracking.stiffness,
-  damping: pupilTracking.damping,
-};
 
 const BlackBar = () => {
   const { x, y } = useMousePosition();
@@ -35,7 +30,7 @@ const BlackBar = () => {
         r={6}
         fill="#1a1a1a"
         animate={{ cx: 24 + offsetX, cy: 65 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       {/* Right eye */}
       <circle cx="56" cy="62" r="12" fill="white" />
@@ -44,7 +39,7 @@ const BlackBar = () => {
         r={6}
         fill="#1a1a1a"
         animate={{ cx: 56 + offsetX, cy: 65 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       <line x1="32" y1="108" x2="48" y2="108" stroke="white" strokeWidth="4" strokeLinecap="round" />
     </svg>

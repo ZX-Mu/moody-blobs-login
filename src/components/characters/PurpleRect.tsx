@@ -6,16 +6,11 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig } from '@/config/animation';
+import { animationConfig, pupilTransition } from '@/config/animation';
 
-const { pupilTracking, characterWeights, pupilMaxOffset } = animationConfig;
+const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.purpleRect;
 const MAX_OFFSET = pupilMaxOffset.purpleRect;
-const TRANSITION = {
-  type: 'spring' as const,
-  stiffness: pupilTracking.stiffness,
-  damping: pupilTracking.damping,
-};
 
 const PurpleRect = () => {
   const { x, y } = useMousePosition();
@@ -35,7 +30,7 @@ const PurpleRect = () => {
         r={9}
         fill="#1a1a1a"
         animate={{ cx: 34 + offsetX, cy: 73 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       {/* Right eye */}
       <circle cx="76" cy="70" r="18" fill="white" />
@@ -44,7 +39,7 @@ const PurpleRect = () => {
         r={9}
         fill="#1a1a1a"
         animate={{ cx: 76 + offsetX, cy: 73 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       <line x1="40" y1="125" x2="70" y2="125" stroke="#1a1a1a" strokeWidth="4" strokeLinecap="round" />
     </svg>

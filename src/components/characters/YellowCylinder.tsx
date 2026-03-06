@@ -6,16 +6,11 @@
  */
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/context/MouseContext';
-import { animationConfig } from '@/config/animation';
+import { animationConfig, pupilTransition } from '@/config/animation';
 
-const { pupilTracking, characterWeights, pupilMaxOffset } = animationConfig;
+const { characterWeights, pupilMaxOffset } = animationConfig;
 const WEIGHT = characterWeights.yellowCylinder;
 const MAX_OFFSET = pupilMaxOffset.yellowCylinder;
-const TRANSITION = {
-  type: 'spring' as const,
-  stiffness: pupilTracking.stiffness,
-  damping: pupilTracking.damping,
-};
 
 const YellowCylinder = () => {
   const { x, y } = useMousePosition();
@@ -36,7 +31,7 @@ const YellowCylinder = () => {
         r={9}
         fill="#1a1a1a"
         animate={{ cx: 32 + offsetX, cy: 55 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       {/* Right eye */}
       <circle cx="74" cy="52" r="18" fill="white" />
@@ -45,7 +40,7 @@ const YellowCylinder = () => {
         r={9}
         fill="#1a1a1a"
         animate={{ cx: 74 + offsetX, cy: 55 + offsetY }}
-        transition={TRANSITION}
+        transition={pupilTransition}
       />
       <circle cx="55" cy="95" r="5" fill="#1a1a1a" />
     </svg>
