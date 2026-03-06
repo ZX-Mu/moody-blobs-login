@@ -53,7 +53,7 @@ development_status:
 
   epic-3: in-progress
   3-1-emotion-context-state-machine: review
-  3-2-typing-state-worried-animation: backlog
+  3-2-typing-state-worried-animation: done
   3-3-password-visible-peek-animation: backlog
   3-4-success-state-happy-animation: backlog
   epic-3-retrospective: optional
